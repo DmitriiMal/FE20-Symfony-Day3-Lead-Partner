@@ -1,58 +1,50 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Travels{% endblock %} {% block body %}
 
-{% block title %}Travels{% endblock %}
+<div class="container my-5 pt-5">
+  <div class="card h-100">
+    <div class="card-body">
+      <h5 class="card-title mb-3">{{ travel.country }}</h5>
+      <p class="card-text my-1">Town: {{ travel.town }}</p>
+      <p class="card-text my-1">Hotel: {{ travel.hotel }}</p>
+      <p class="card-text">Days: {{ travel.days }}</p>
+      <p class="card-text">All included: {{ travel.allIncluded ? 'Yes' : 'No' }}</p>
+      <p class="card-text">Price: &euro;{{ travel.price }}</p>
+      <p class="card-text">{{ travel.description }}</p>
+      
+     
+      <div class="btn-group rounded w-100" role="group" aria-label="Basic example">
+        <a class="btn btn-sm rounded-start btn-info" href="/#{{ travel.id }} ">Back</a>
+        <a class="btn btn-sm btn-warning" href="/edit/{{ travel.id }}">Edit</a>
+        <a class="btn btn-sm rounded-end btn-danger" href="/delete/{{ travel.id }}">Delete</a>
+      </div>
+    </div>
+    {##}
+    <img src="{{ travel.picture }}" class="card-img-top object-fit-cover rounded-bottom asprat" alt="..." />
+  </div>
+</div>
 
-{% block body %}
-    <h1>Travels</h1>
+{# #}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ travel.id }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ travel.country }}</td>
-            </tr>
-            <tr>
-                <th>Town</th>
-                <td>{{ travel.town }}</td>
-            </tr>
-            <tr>
-                <th>Hotel</th>
-                <td>{{ travel.hotel }}</td>
-            </tr>
-            <tr>
-                <th>Days</th>
-                <td>{{ travel.days }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ travel.price }}</td>
-            </tr>
-            <tr>
-                <th>All_included</th>
-                <td>{{ travel.allIncluded ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ travel.createdAt ? travel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ travel.picture }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ travel.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+      <th>All_included</th>
+      <td>{{ travel.allIncluded ? 'Yes' : 'No' }}</td>
+      
+      <th>Created_at</th>
+      <td>{{ travel.createdAt ? travel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+    </tr>
+    <tr>
+      <th>Picture</th>
+      <td>{{ travel.picture }}</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>{{ travel.description }}</td>
+    </tr>
+  </tbody>
+</table>
 
-    <a href="{{ path('app_travels_index') }}">back to list</a>
+<a href="{{ path('app_travels_index') }}">back to list</a>
 
-    <a href="{{ path('app_travels_edit', {'id': travel.id}) }}">edit</a>
+<a href="{{ path('app_travels_edit', { id: travel.id }) }}">edit</a>
 
-    {{ include('travels/_delete_form.html.twig') }}
+{{ include('travels/_delete_form.html.twig') }}
 {% endblock %}

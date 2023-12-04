@@ -30,6 +30,8 @@ class TravelsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $now = new \DateTimeImmutable();
+            $travel->setCreatedAt($now);
             $entityManager->persist($travel);
             $entityManager->flush();
 
@@ -71,7 +73,7 @@ class TravelsController extends AbstractController
     #[Route('/{id}', name: 'app_travels_delete', methods: ['POST'])]
     public function delete(Request $request, Travels $travel, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$travel->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $travel->getId(), $request->request->get('_token'))) {
             $entityManager->remove($travel);
             $entityManager->flush();
         }
