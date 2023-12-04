@@ -21,14 +21,7 @@
         </div>
       </div>
     </div>
-
-    {#
-    <td>{{ travel.hotel }}</td>
-    <td>{{ travel.price }}</td>
-    <td>{{ travel.allIncluded ? 'Yes' : 'No' }}</td>
-    <td>{{ travel.createdAt ? travel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-    <td>{{ travel.description }}</td>
-    #} {% else %}
+    {% else %}
     <p class="text-body-secondary">No records found ¯\_(ツ)_/¯</p>
     {% endfor %}
   </div>

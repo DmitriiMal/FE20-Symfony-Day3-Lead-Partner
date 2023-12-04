@@ -1,13 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Edit Travels{% endblock %} {% block body %}
+<div class="container my-5 pt-5">
+  <h1>Edit Travels</h1>
 
-{% block title %}Edit Travels{% endblock %}
+  {{ include('travels/_form.html.twig', { button_label: 'Update' }) }}
 
-{% block body %}
-    <h1>Edit Travels</h1>
-
-    {{ include('travels/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_travels_index') }}">back to list</a>
-
-    {{ include('travels/_delete_form.html.twig') }}
+  <a class="btn mt-4" href="{{ path('app_travels_index') }}#{{ travel.id }}">back to list</a>
+  {{ include('travels/_delete_form.html.twig') }}
+</div>
 {% endblock %}

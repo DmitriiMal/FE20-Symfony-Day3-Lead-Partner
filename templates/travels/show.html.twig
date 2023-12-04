@@ -15,7 +15,7 @@
       </p>
 
       <div class="btn-group rounded w-100" role="group" aria-label="Basic example">
-        <a class="btn btn-sm rounded-start btn-info" href="{{ path('app_travels_index') }}#{{ travel.id }} ">Back to list</a>
+        <a class="btn btn-sm rounded-start btn-info" href="{{ path('app_travels_index') }}#{{ travel.id }}">Back to list</a>
         <a class="btn btn-sm btn-warning" href="{{ path('app_travels_edit', { id: travel.id }) }}">Edit</a>
         <a class="btn btn-sm rounded-end btn-danger" href="/delete/{{ travel.id }}">Delete</a>
       </div>
@@ -25,4 +25,5 @@
   </div>
 </div>
 
-{# #} {# {{ include('travels/_delete_form.html.twig') }} #} {% endblock %}
+{{ include('travels/_delete_form.html.twig') }}
+{% endblock %}
