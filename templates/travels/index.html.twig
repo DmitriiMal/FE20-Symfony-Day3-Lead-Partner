@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %} {% block title %}Travels | {{ parent() }}{% endblock %} {% block body %}
+{% extends 'base.html.twig' %} {% block title %}Travels | {{ parent() }}{% endblock %} {% block body %} {% block stylesheets %} {% endblock %}
 
 <div class="container my-5 pt-5">
   <h1 class="mb-4">Travel destinations</h1>
@@ -14,8 +14,8 @@
             <p class="card-text">Days: {{ travel.days }}</p>
             <div class="btn-group rounded w-100" role="group" aria-label="Basic example">
               <a class="btn btn-sm rounded-start btn-info" href="{{ path('app_travels_show', { id: travel.id }) }}" target="_blank">View</a>
-              <a class="btn btn-sm btn-warning" href="{{ path('app_travels_edit', { id: travel.id }) }}" target="_blank">Edit</a>
-              <a class="btn btn-sm rounded-end btn-danger" href="/delete/{{ travel.id }}">Delete</a>
+              <a class="btn btn-sm rounded-end btn-warning" href="{{ path('app_travels_edit', { id: travel.id }) }}" target="_blank">Edit</a>
+              {# <a class="btn btn-sm rounded-end btn-danger" href="/delete/{{ travel.id }}">Delete</a> #}
             </div>
           </div>
         </div>
