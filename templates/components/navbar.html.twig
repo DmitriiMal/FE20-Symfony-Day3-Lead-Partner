@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top opacity-75">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass fa-2xl"></i> Viva la Trip</a>
+    <a class="navbar-brand" href="{{ path('app_travels_index') }}"><i class="fa-regular fa-compass fa-2xl"></i> Viva la Trip</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="/create">Add a travel destination</a>
+          <a class="nav-link active" href="{{ path('app_travels_new') }}">Add a travel destination</a>
         </li>
       </ul>
     </div>

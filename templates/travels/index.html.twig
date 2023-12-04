@@ -1,51 +1,36 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Travels | {{ parent() }}{% endblock %} {% block body %}
 
-{% block title %}Travels index{% endblock %}
+<div class="container my-5 pt-5">
+  <h1 class="mb-4">Travel destinations</h1>
+  <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-3">
+    {% for travel in travels %}
+    <div id="{{ travel.id }}" class="mb-4">
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ travel.picture }}" class="card-img-top object-fit-cover rounded-top asprat" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title mb-3">{{ travel.country }}</h5>
+            <p class="card-text my-1">Town: {{ travel.town }}</p>
+            <p class="card-text">Days: {{ travel.days }}</p>
+            <div class="btn-group rounded w-100" role="group" aria-label="Basic example">
+              <a class="btn btn-sm rounded-start btn-info" href="{{ path('app_travels_show', { id: travel.id }) }}" target="_blank">View</a>
+              <a class="btn btn-sm btn-warning" href="{{ path('app_travels_edit', { id: travel.id }) }}" target="_blank">Edit</a>
+              <a class="btn btn-sm rounded-end btn-danger" href="/delete/{{ travel.id }}">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-{% block body %}
-    <h1>Travels index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Country</th>
-                <th>Town</th>
-                <th>Hotel</th>
-                <th>Days</th>
-                <th>Price</th>
-                <th>All_included</th>
-                <th>Created_at</th>
-                <th>Picture</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for travel in travels %}
-            <tr>
-                <td>{{ travel.id }}</td>
-                <td>{{ travel.country }}</td>
-                <td>{{ travel.town }}</td>
-                <td>{{ travel.hotel }}</td>
-                <td>{{ travel.days }}</td>
-                <td>{{ travel.price }}</td>
-                <td>{{ travel.allIncluded ? 'Yes' : 'No' }}</td>
-                <td>{{ travel.createdAt ? travel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ travel.picture }}</td>
-                <td>{{ travel.description }}</td>
-                <td>
-                    <a href="{{ path('app_travels_show', {'id': travel.id}) }}">show</a>
-                    <a href="{{ path('app_travels_edit', {'id': travel.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_travels_new') }}">Create new</a>
+    {#
+    <td>{{ travel.hotel }}</td>
+    <td>{{ travel.price }}</td>
+    <td>{{ travel.allIncluded ? 'Yes' : 'No' }}</td>
+    <td>{{ travel.createdAt ? travel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+    <td>{{ travel.description }}</td>
+    #} {% else %}
+    <p class="text-body-secondary">No records found ¯\_(ツ)_/¯</p>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
