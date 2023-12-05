@@ -10,14 +10,14 @@
       <p class="card-text my-1">All included: {{ travel.allIncluded ? 'Yes' : 'No' }}</p>
       <p class="card-text">Price: &euro;{{ travel.price }}</p>
       <p class="card-text my-1">{{ travel.description }}</p>
+      <p class="card-text my-1 text-{{travel.fk_status.name == "Done" ? "success" : "body-secondary"}} ">{{ travel.fk_status.name }}</p>
       <p class="my-3 text-body-secondary">
         <small>Added at: {{ travel.createdAt ? travel.createdAt|date('Y-m-d H:i:s') : '' }}</small>
       </p>
-
+      
       <div class="btn-group w-100" role="group" aria-label="Basic example">
         <a class="btn btn-sm btn-info" href="{{ path('app_travels_index') }}#{{ travel.id }}">Back to list</a>
         <a class="btn btn-sm btn-warning" href="{{ path('app_travels_edit', { id: travel.id }) }}">Edit</a>
-        {# <a class="btn btn-sm btn-danger" href="/delete/{{ travel.id }}">Delete</a> #} {# {{ include('travels/_delete_form.html.twig') }} #}
       </div>
     </div>
     {##}

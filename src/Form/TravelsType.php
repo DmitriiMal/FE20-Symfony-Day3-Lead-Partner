@@ -3,7 +3,7 @@
 namespace App\Form;
 
 
-use App\Entity\Status as EntityStatus;
+// use App\Entity\Status as EntityStatus;
 use App\Entity\Travels;
 use App\Entity\Status;
 use Symfony\Component\Form\AbstractType;
@@ -14,6 +14,13 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
+use App\Service\FileUploader;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class TravelsType extends AbstractType
 {
@@ -49,6 +56,28 @@ class TravelsType extends AbstractType
             ->add('fk_status', EntityType::class, [
                 'class' => Status::class,
                 'choice_label' => 'name',
+                'attr' => ['class' => 'form-control mb-3']
+            ])
+            ->add('picture', FileType::class, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Upload Picture',
+                //unmapped means that is not associated to any entity property
+                'mapped' => false,
+                // mandatory to have a file
+                'required' => true,
+
+                //in the associated entity, so you can use the PHP constraint classes as validators
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                            'image/jpg',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image file',
+                    ])
+                ],
             ]);
     }
 

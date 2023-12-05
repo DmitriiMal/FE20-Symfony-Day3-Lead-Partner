@@ -7,7 +7,7 @@
     <div id="{{ travel.id }}" class="mb-4">
       <div class="col">
         <div class="card h-100">
-          <img src="{{ travel.picture }}" class="card-img-top object-fit-cover rounded-top asprat" alt="..." />
+          <img src="{{ asset('pictures/'~ travel.picture) }}" class="card-img-top object-fit-cover rounded-top asprat" alt="{{ travel.country }}" />
           <div class="card-body">
             <h5 class="card-title mb-3">{{ travel.country }}</h5>
             <p class="card-text my-1">Town: {{ travel.town }}</p>

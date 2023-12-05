@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Service\FileUploader;
+
 
 
 #[Route('/travels')]
@@ -25,13 +27,18 @@ class TravelsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_travels_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $travel = new Travels();
         $form = $this->createForm(TravelsType::class, $travel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureFileName = $fileUploader->upload($pictureFile);
+                $travel->setPicture($pictureFileName);
+            }
             $now = new \DateTimeImmutable();
             $travel->setCreatedAt($now);
             $entityManager->persist($travel);
@@ -55,12 +62,17 @@ class TravelsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_travels_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Travels $travel, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Travels $travel, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(TravelsType::class, $travel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureFileName = $fileUploader->upload($pictureFile);
+                $travel->setPicture($pictureFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_travels_index', [], Response::HTTP_SEE_OTHER);
