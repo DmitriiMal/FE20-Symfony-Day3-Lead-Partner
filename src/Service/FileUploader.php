@@ -22,9 +22,13 @@ class FileUploader
   public function upload(UploadedFile $file)
   {
     $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-    $safeFilename = $this->slugger->slug($originalFilename);
+    // $safeFilename = $this->slugger->slug($originalFilename);
+
+
     //the slugger convert the file name into a safe string value
-    $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+    // $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+
+    $fileName = uniqid() . '.' . $file->guessExtension();
 
     try {
       $file->move($this->getTargetDirectory(), $fileName);

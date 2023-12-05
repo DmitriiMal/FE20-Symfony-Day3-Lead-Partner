@@ -69,7 +69,7 @@ class TravelsType extends AbstractType
                 //in the associated entity, so you can use the PHP constraint classes as validators
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '2048k',
                         'mimeTypes' => [
                             'image/png',
                             'image/jpeg',

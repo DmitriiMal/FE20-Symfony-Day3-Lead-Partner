@@ -12,6 +12,9 @@
             <h5 class="card-title mb-3">{{ travel.country }}</h5>
             <p class="card-text my-1">Town: {{ travel.town }}</p>
             <p class="card-text">Days: {{ travel.days }}</p>
+            {#
+            <p class="card-text text-warning">&starf;&starf;&starf;&starf;&star;</p>
+            #}
             <div class="btn-group rounded w-100" role="group" aria-label="Basic example">
               <a class="btn btn-sm rounded-start btn-info" href="{{ path('app_travels_show', { id: travel.id }) }}" target="_blank">View</a>
               <a class="btn btn-sm rounded-end btn-warning" href="{{ path('app_travels_edit', { id: travel.id }) }}" target="_blank">Edit</a>
