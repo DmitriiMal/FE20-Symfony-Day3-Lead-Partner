@@ -15,7 +15,7 @@ use App\Service\FileUploader;
 
 
 
-#[Route('/travels')]
+#[Route('/')]
 class TravelsController extends AbstractController
 {
     #[Route('/', name: 'app_travels_index', methods: ['GET'])]
